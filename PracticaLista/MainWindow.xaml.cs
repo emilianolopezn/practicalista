@@ -27,6 +27,18 @@ namespace PracticaLista
         public MainWindow()
         {
             InitializeComponent();
+
+            Materia historia =
+                new Materia("HST123", "Historia");
+            Materia matematicas =
+                new Materia("MAT456", "Matemáticas");
+            Materia civismo =
+                new Materia("CIV741", "Civismo");
+            Materia espanol =
+                new Materia("ESP963", "Español");
+            Materia artistica =
+                new Materia("ART852", "Artistica");
+
             alumnos.Add(
                 new Alumno("José Pérez",
                 "153697","Lic. en Derecho"));
@@ -39,6 +51,19 @@ namespace PracticaLista
             alumnos.Add(
                 new Alumno("María Valenzuela",
                 "142536", "Ing. Civil"));
+
+            //Primer alumno
+            alumnos[0].Materias.Add(espanol);
+            alumnos[0].Materias.Add(artistica);
+            //SEgundo
+            alumnos[1].Materias.Add(civismo);
+            alumnos[1].Materias.Add(matematicas);
+            //Tercero
+            alumnos[2].Materias.Add(historia);
+            alumnos[2].Materias.Add(espanol);
+            //Cuarto
+            alumnos[3].Materias.Add(civismo);
+            alumnos[3].Materias.Add(artistica);
 
             foreach(Alumno alumno in alumnos)
             {
@@ -60,6 +85,30 @@ namespace PracticaLista
                 alumnos[lstAlumnos.SelectedIndex].Matricula;
             lblCarrera.Text = 
                 alumnos[lstAlumnos.SelectedIndex].Carrera;
+
+            lstMaterias.Items.Clear();
+
+            foreach(Materia materia 
+                in alumnos[lstAlumnos.SelectedIndex].Materias)
+            {
+                lstMaterias.Items.Add(
+                    new ListBoxItem()
+                    {
+                        Content = materia.Nombre
+                    });
+            }
+
+        }
+
+        private void lstMaterias_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lstMaterias.SelectedIndex != -1 ) {
+                lblNombreMateria.Text =
+                alumnos[lstAlumnos.SelectedIndex].Materias[lstMaterias.SelectedIndex].Nombre;
+                lblClaveMateria.Text =
+                    alumnos[lstAlumnos.SelectedIndex].Materias[lstMaterias.SelectedIndex].Clave;
+            }
+            
         }
     }
 }
