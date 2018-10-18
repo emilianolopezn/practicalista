@@ -102,11 +102,18 @@ namespace PracticaLista
 
         private void lstMaterias_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lstMaterias.SelectedIndex != -1 ) {
+            if (lstMaterias.SelectedIndex != -1)
+            {
                 lblNombreMateria.Text =
-                alumnos[lstAlumnos.SelectedIndex].Materias[lstMaterias.SelectedIndex].Nombre;
+                alumnos[lstAlumnos.SelectedIndex].
+                Materias[lstMaterias.SelectedIndex].Nombre;
                 lblClaveMateria.Text =
-                    alumnos[lstAlumnos.SelectedIndex].Materias[lstMaterias.SelectedIndex].Clave;
+                    alumnos[lstAlumnos.SelectedIndex].
+                    Materias[lstMaterias.SelectedIndex].Clave;
+            } else
+            {
+                lblNombreMateria.Text = "";
+                lblClaveMateria.Text = "";
             }
             
         }
